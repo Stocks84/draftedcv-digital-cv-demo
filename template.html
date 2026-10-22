@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{NAME}} • {{TITLE}}</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#0a1428">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="{{SHORT}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Compiled Tailwind CSS v3 (see README to rebuild); loaded last, as the Play CDN did -->
+    <link rel="stylesheet" href="css/tailwind.css">
+</head>
+<body class="bg-zinc-950 text-zinc-200 mountain">
+    <!-- QR welcome screen: shown on every open; tap/click, Enter or Escape to view the CV -->
+    <div id="welcome" class="welcome no-print" role="dialog" aria-modal="true" aria-labelledby="welcomeName" aria-describedby="welcomeHint">
+        <div class="welcome-card">
+            <p class="welcome-kicker">{{TITLE}}</p>
+            <p id="welcomeName" class="welcome-name">{{NAME}}</p>
+            <div class="welcome-qr"><img src="qr-welcome.svg" width="260" height="260" alt="QR code linking to {{URL}}"></div>
+            <p id="welcomeHint" class="welcome-hint">Scan to open this CV on your phone</p>
+            {{WELCOME_MARK}}
+            <button id="welcomeBtn" type="button" class="welcome-btn">View CV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800 no-print">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-cyan-600 rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">{{INITIALS}}</span>
+                </div>
+                <div>
+                    <span class="font-semibold text-xl tracking-tight">{{NAME}}</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-x-7 text-sm">
+                <a href="#about" class="nav-link text-zinc-400 hover:text-white font-medium">About</a>
+                <a href="#skills" class="nav-link text-zinc-400 hover:text-white font-medium">Skills</a>
+                <a href="#experience" class="nav-link text-zinc-400 hover:text-white font-medium">Experience</a>
+                <a href="#projects" class="nav-link text-zinc-400 hover:text-white font-medium">Projects</a>
+                
+                <div class="flex items-center gap-x-3 pl-5 border-l border-zinc-800">
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" 
+                            class="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors"
+                            onclick="toggleDarkMode()">
+                        <i class="fa-solid fa-moon text-lg" id="darkIcon"></i>
+                    </button>
+                    
+                    <!-- CV Theme Toggle: Mountain vs Traditional -->
+                    <button id="themeToggle" 
+                            onclick="toggleCVTheme()"
+                            class="flex items-center gap-x-2 px-3 py-1.5 text-xs font-medium border border-zinc-700 hover:bg-zinc-900 rounded-2xl transition-all text-zinc-400 hover:text-white">
+                        <i class="fa-solid fa-mountain text-sm" id="themeIcon"></i>
+                        <span id="themeLabel">Classic</span>
+                    </button>
+                    
+                    <!-- Download PDF -->
+                    <div class="flex flex-col items-end">
+                        <button onclick="downloadPDF()"
+                                class="flex items-center gap-x-2 px-4 py-2 bg-white text-zinc-950 hover:bg-zinc-100 font-semibold text-sm rounded-2xl transition-all active:scale-[0.985]">
+                            <i class="fa-solid fa-download text-sm"></i>
+                            <span>Print / Save PDF</span>
+                        </button>
+                        <span class="text-[10px] text-zinc-500 mt-1 pr-1 hidden md:block">Opens print dialog → choose "Save as PDF"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="flex md:hidden items-center gap-x-2">
+                <!-- Dark Mode Toggle (always visible) -->
+                <button id="darkModeToggleMobile" 
+                        class="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors"
+                        onclick="toggleDarkMode()">
+                    <i class="fa-solid fa-moon text-lg" id="darkIconMobile"></i>
+                </button>
+                
+                <!-- Hamburger Menu -->
+                <button onclick="toggleMobileMenu()" 
+                        class="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">
+                    <i class="fa-solid fa-bars text-xl" id="hamburgerIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-lg">
+            <div class="px-5 py-4 flex flex-col gap-y-1 text-sm">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">About</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">Skills</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">Experience</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">Projects</a>
+                
+                <div class="pt-3 mt-2 border-t border-zinc-800">
+                    <!-- Mobile Theme Toggle -->
+                    <button onclick="toggleCVTheme(); toggleMobileMenu();" 
+                            class="w-full flex items-center justify-center gap-x-2 px-4 py-2.5 mb-2 border border-zinc-700 hover:bg-zinc-900 rounded-2xl text-sm text-zinc-300 hover:text-white transition-all">
+                        <i class="fa-solid fa-mountain mr-2" id="themeIconMobile"></i>
+                        <span id="themeLabelMobile">Switch to Classic View</span>
+                    </button>
+                    
+                    <button onclick="downloadPDF(); toggleMobileMenu();" 
+                            class="w-full flex items-center justify-center gap-x-2 px-4 py-3 bg-white text-zinc-950 hover:bg-zinc-100 font-semibold text-sm rounded-2xl transition-all">
+                        <i class="fa-solid fa-download text-sm"></i>
+                        <span>Print / Save PDF</span>
+                    </button>
+                    <div class="text-center mt-1.5">
+                        <span class="text-[10px] text-zinc-500">Opens print dialog. On mobile: use Share → Print if needed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+{{BODY}}
+    <!-- Project Modals -->
+    <div id="projectModal" onclick="hideProjectModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full p-8">
+            <div class="flex justify-between items-start mb-6">
+                <div id="modalTitle" class="text-3xl font-semibold"></div>
+                <button onclick="hideProjectModal()" class="text-zinc-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+            
+            <div id="modalDescription" class="text-lg text-zinc-300 leading-relaxed mb-6"></div>
+            
+            <div class="mb-6">
+                <div class="text-xs uppercase tracking-widest text-zinc-500 mb-2 font-medium">Technologies Used</div>
+                <div id="modalTech" class="flex flex-wrap gap-2"></div>
+            </div>
+            
+            <div class="flex items-center gap-x-4">
+                <a id="modalLiveLink" href="#" target="_blank" 
+                   class="inline-flex items-center gap-x-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-500 transition-colors rounded-2xl font-semibold text-sm">
+                    <span>View Live Site</span>
+                    <i class="fa-solid fa-external-link-alt text-xs"></i>
+                </a>
+                <a id="modalGithubLink" href="#" target="_blank"
+                   class="inline-flex items-center gap-x-2 px-6 py-3 border border-zinc-700 hover:bg-zinc-800 rounded-2xl font-medium text-sm">
+                    <i class="fa-brands fa-github"></i>
+                    <span>View Code</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>window.CV_PROJECTS = {{PROJECTS_JSON}};</script>
+    <script src="js/main.js"></script>
+    <script>
+    (function () {
+        var w = document.getElementById('welcome'), b = document.getElementById('welcomeBtn');
+        if (!w) return;
+        document.documentElement.classList.add('welcome-open');
+        b.focus({ preventScroll: true });
+        function close() {
+            if (w.classList.contains('welcome-hide')) return;
+            w.classList.add('welcome-hide');
+            document.documentElement.classList.remove('welcome-open');
+            document.removeEventListener('keydown', onKey);
+            setTimeout(function () { w.hidden = true; }, 350);
+        }
+        function onKey(e) {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); close(); }
+            else if (e.key === 'Tab') { e.preventDefault(); b.focus(); }
+        }
+        w.addEventListener('click', close);
+        document.addEventListener('keydown', onKey);
+    })();
+    </script>
+{{MARKER}}
+</body>
+</html>

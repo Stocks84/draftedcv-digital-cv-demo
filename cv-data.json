@@ -1,0 +1,59 @@
+{
+  "_note": "DraftedCV Digital CV template. ALL content is fictional example data. Edit this file, then run: python3 build.py",
+  "site": {
+    "url": "https://stocks84.github.io/draftedcv-digital-cv-demo/",
+    "path": "/draftedcv-digital-cv-demo/",
+    "cache": "dcv-demo-v1",
+    "app_short_name": "Alex CV",
+    "theme_color": "#0a1428",
+    "example_marker": true
+  },
+  "person": {
+    "name": "Alex Morgan",
+    "short_name": "Alex Morgan",
+    "initials": "AM",
+    "title": "Junior Full Stack Developer",
+    "email": "alex.morgan@example.com",
+    "phone": "+44 7700 900123",
+    "phone_href": "+447700900123",
+    "location": "Manchester, UK",
+    "links": [
+      {"label": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/example"},
+      {"label": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "https://www.linkedin.com/in/example"}
+    ],
+    "availability": "Open to junior full stack & frontend roles"
+  },
+  "about": [
+    "Junior Full Stack Developer with a Diploma in Web Development from the (fictional) Northbridge Coding Academy.",
+    "I bring eight years in hospitality and event management, so I'm used to fast-moving teams, demanding customers and staying calm when things go sideways. Now I put that same care into building clean, accessible web apps.",
+    "I work with HTML, CSS, JavaScript, TypeScript, Python, React and Django, plus SQL and NoSQL databases. I use AI tools every day for debugging, code review and prototyping, and I test and own everything I ship."
+  ],
+  "skill_groups": [
+    {"title": "Technologies", "icon": "fa-solid fa-laptop-code", "skills": [
+      ["HTML5 / CSS3", "Intermediate", 60], ["JavaScript", "Intermediate", 50], ["TypeScript", "Beginner", 30], ["Python", "Intermediate", 45]]},
+    {"title": "Frameworks & Databases", "icon": "fa-solid fa-layer-group", "skills": [
+      ["React", "Intermediate", 45], ["Django / REST Framework", "Beginner", 35], ["PostgreSQL", "Beginner", 30], ["Tailwind CSS", "Intermediate", 50]]}
+  ],
+  "highlight": {
+    "title": "AI & Modern Development Practices", "icon": "fa-solid fa-robot",
+    "text": "I use AI assistants daily for code generation, debugging and architecture planning, which helps me ship features faster while keeping quality high.",
+    "tags": ["Prompt Engineering", "AI-Assisted Development", "Testing", "Rapid Prototyping"]
+  },
+  "timeline": [
+    {"title": "Diploma in Web Development", "org": "Northbridge Coding Academy • Online", "dates": "2025 – 2026", "icon": "fa-solid fa-graduation-cap", "current": true, "note": "Example qualification for demo purposes"},
+    {"title": "Events Coordinator", "org": "Harbourside Events Co. • Manchester, UK", "dates": "2021 – Present", "icon": "fa-solid fa-calendar-days", "bullets": [
+      "Planned and ran 120+ corporate and private events a year with budgets up to £40k.",
+      "Built a simple booking spreadsheet-to-web workflow that cut admin time by 30%.",
+      "Led teams of up to 15 staff on event days."]},
+    {"title": "Restaurant Supervisor", "org": "The Copper Kettle • Leeds, UK", "dates": "2017 – 2021", "icon": "fa-solid fa-utensils", "bullets": [
+      "Supervised front-of-house for a 90-cover restaurant.",
+      "Trained new staff and introduced a digital rota system."]},
+    {"title": "BA (Hons) Business Management", "org": "University of Example • UK", "dates": "2014 – 2017", "icon": "fa-solid fa-graduation-cap"}
+  ],
+  "projects": [
+    {"title": "Plate Planner", "label": "Full-Stack Project • 2026", "icon": "fa-solid fa-bowl-food", "summary": "Meal-planning web app with user accounts, saved recipes and an auto-generated shopping list.", "description": "A Django and React app where users plan weekly meals, save recipes and get a combined shopping list. Includes authentication, REST API and responsive UI.", "tech": ["React", "Django REST", "PostgreSQL"], "live": "#", "github": "#"},
+    {"title": "Event Check-in", "label": "Personal Project • 2025", "icon": "fa-solid fa-qrcode", "summary": "Mobile-first PWA that checks guests in by scanning QR tickets, working offline at venues with poor signal.", "description": "An offline-first progressive web app for small events: import a guest list, scan QR tickets and sync check-ins when back online.", "tech": ["JavaScript", "PWA", "IndexedDB"], "live": "#", "github": "#"},
+    {"title": "Corner Café Website", "label": "Practice Project • 2025", "icon": "fa-solid fa-mug-hot", "summary": "Responsive single-page site for a fictional café with menu, opening hours and a contact form.", "description": "A clean, accessible single-page website built to practise semantic HTML, responsive layouts and form validation.", "tech": ["HTML5", "CSS3", "JavaScript"], "live": "#", "github": "#"},
+    {"title": "Budget Buddy", "label": "Python Project • 2025", "icon": "fa-solid fa-wallet", "summary": "Command-line budgeting tool that imports bank CSVs, categorises spending and prints monthly reports.", "description": "A Python CLI that reads bank CSV exports, categorises transactions with simple rules and outputs monthly summaries and charts.", "tech": ["Python", "pandas", "CLI"], "live": "#", "github": "#"}
+  ]
+}

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan • Junior Full Stack Developer</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#0a1428">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Alex CV">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Compiled Tailwind CSS v3 (see README to rebuild); loaded last, as the Play CDN did -->
+    <link rel="stylesheet" href="css/tailwind.css">
+</head>
+<body class="bg-zinc-950 text-zinc-200 mountain">
+    <!-- QR welcome screen: shown on every open; tap/click, Enter or Escape to view the CV -->
+    <div id="welcome" class="welcome no-print" role="dialog" aria-modal="true" aria-labelledby="welcomeName" aria-describedby="welcomeHint">
+        <div class="welcome-card">
+            <p class="welcome-kicker">Junior Full Stack Developer</p>
+            <p id="welcomeName" class="welcome-name">Alex Morgan</p>
+            <div class="welcome-qr"><img src="qr-welcome.svg" width="260" height="260" alt="QR code linking to https://stocks84.github.io/draftedcv-digital-cv-demo/"></div>
+            <p id="welcomeHint" class="welcome-hint">Scan to open this CV on your phone</p>
+            <p class="welcome-mark">Example CV by <b>DraftedCV</b> · fictional details</p>
+            <button id="welcomeBtn" type="button" class="welcome-btn">View CV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800 no-print">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-cyan-600 rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">AM</span>
+                </div>
+                <div>
+                    <span class="font-semibold text-xl tracking-tight">Alex Morgan</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-x-7 text-sm">
+                <a href="#about" class="nav-link text-zinc-400 hover:text-white font-medium">About</a>
+                <a href="#skills" class="nav-link text-zinc-400 hover:text-white font-medium">Skills</a>
+                <a href="#experience" class="nav-link text-zinc-400 hover:text-white font-medium">Experience</a>
+                <a href="#projects" class="nav-link text-zinc-400 hover:text-white font-medium">Projects</a>
+                
+                <div class="flex items-center gap-x-3 pl-5 border-l border-zinc-800">
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" 
+                            class="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors"
+                            onclick="toggleDarkMode()">
+                        <i class="fa-solid fa-moon text-lg" id="darkIcon"></i>
+                    </button>
+                    
+                    <!-- CV Theme Toggle: Mountain vs Traditional -->
+                    <button id="themeToggle" 
+                            onclick="toggleCVTheme()"
+                            class="flex items-center gap-x-2 px-3 py-1.5 text-xs font-medium border border-zinc-700 hover:bg-zinc-900 rounded-2xl transition-all text-zinc-400 hover:text-white">
+                        <i class="fa-solid fa-mountain text-sm" id="themeIcon"></i>
+                        <span id="themeLabel">Classic</span>
+                    </button>
+                    
+                    <!-- Download PDF -->
+                    <div class="flex flex-col items-end">
+                        <button onclick="downloadPDF()"
+                                class="flex items-center gap-x-2 px-4 py-2 bg-white text-zinc-950 hover:bg-zinc-100 font-semibold text-sm rounded-2xl transition-all active:scale-[0.985]">
+                            <i class="fa-solid fa-download text-sm"></i>
+                            <span>Print / Save PDF</span>
+                        </button>
+                        <span class="text-[10px] text-zinc-500 mt-1 pr-1 hidden md:block">Opens print dialog → choose "Save as PDF"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="flex md:hidden items-center gap-x-2">
+                <!-- Dark Mode Toggle (always visible) -->
+                <button id="darkModeToggleMobile" 
+                        class="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors"
+                        onclick="toggleDarkMode()">
+                    <i class="fa-solid fa-moon text-lg" id="darkIconMobile"></i>
+                </button>
+                
+                <!-- Hamburger Menu -->
+                <button onclick="toggleMobileMenu()" 
+                        class="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">
+                    <i class="fa-solid fa-bars text-xl" id="hamburgerIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-lg">
+            <div class="px-5 py-4 flex flex-col gap-y-1 text-sm">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">About</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">Skills</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">Experience</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="py-2.5 px-3 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-xl transition-colors">Projects</a>
+                
+                <div class="pt-3 mt-2 border-t border-zinc-800">
+                    <!-- Mobile Theme Toggle -->
+                    <button onclick="toggleCVTheme(); toggleMobileMenu();" 
+                            class="w-full flex items-center justify-center gap-x-2 px-4 py-2.5 mb-2 border border-zinc-700 hover:bg-zinc-900 rounded-2xl text-sm text-zinc-300 hover:text-white transition-all">
+                        <i class="fa-solid fa-mountain mr-2" id="themeIconMobile"></i>
+                        <span id="themeLabelMobile">Switch to Classic View</span>
+                    </button>
+                    
+                    <button onclick="downloadPDF(); toggleMobileMenu();" 
+                            class="w-full flex items-center justify-center gap-x-2 px-4 py-3 bg-white text-zinc-950 hover:bg-zinc-100 font-semibold text-sm rounded-2xl transition-all">
+                        <i class="fa-solid fa-download text-sm"></i>
+                        <span>Print / Save PDF</span>
+                    </button>
+                    <div class="text-center mt-1.5">
+                        <span class="text-[10px] text-zinc-500">Opens print dialog. On mobile: use Share → Print if needed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Header -->
+    <header class="max-w-7xl mx-auto px-5 sm:px-6 pt-12 sm:pt-16 pb-10 sm:pb-12">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-10">
+            <div class="flex-shrink-0 mx-auto lg:mx-0">
+                <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-3xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
+                    <img src="headshot.png" alt="Alex Morgan" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="flex-1">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter heading-font mb-2">Alex Morgan</h1>
+                <p class="text-2xl sm:text-3xl text-cyan-400 font-semibold tracking-tight mb-4">Junior Full Stack Developer</p>
+                <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                    <a href="mailto:alex.morgan@example.com" class="flex items-center gap-x-2 text-zinc-400 hover:text-white transition-colors"><i class="fa-solid fa-envelope w-4"></i><span>alex.morgan@example.com</span></a>
+                    <a href="tel:+447700900123" class="flex items-center gap-x-2 text-zinc-400 hover:text-white transition-colors"><i class="fa-solid fa-phone w-4"></i><span>+44 7700 900123</span></a>
+                    <span class="flex items-center gap-x-2 text-zinc-400"><i class="fa-solid fa-location-dot w-4"></i><span>Manchester, UK</span></span>
+                </div>
+                <div class="flex items-center gap-x-4 mt-6">
+                    <a href="https://github.com/example" target="_blank" rel="noopener" class="flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-2xl text-sm font-medium transition-all">
+                        <i class="fa-brands fa-github"></i><span>GitHub</span></a>
+                    <a href="https://www.linkedin.com/in/example" target="_blank" rel="noopener" class="flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-2xl text-sm font-medium transition-all">
+                        <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="about" class="max-w-7xl mx-auto px-6 pb-16 scroll-animate">
+        <div class="max-w-3xl">
+            <h2 class="section-header mb-6 flex items-center gap-x-3"><span>About Me</span></h2>
+            <div class="prose prose-invert text-lg text-zinc-300 leading-relaxed"><p class="mb-6">Junior Full Stack Developer with a Diploma in Web Development from the (fictional) Northbridge Coding Academy.</p><p class="mb-6">I bring eight years in hospitality and event management, so I&#x27;m used to fast-moving teams, demanding customers and staying calm when things go sideways. Now I put that same care into building clean, accessible web apps.</p><p class="mb-6">I work with HTML, CSS, JavaScript, TypeScript, Python, React and Django, plus SQL and NoSQL databases. I use AI tools every day for debugging, code review and prototyping, and I test and own everything I ship.</p></div>
+            <div class="mt-6 inline-flex items-center gap-x-2 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="text-emerald-400 font-medium">Open to junior full stack &amp; frontend roles</span>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="max-w-7xl mx-auto px-6 pb-20 scroll-animate">
+        <h2 class="section-header mb-8">Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="flex items-center gap-x-3 mb-6"><i class="fa-solid fa-laptop-code text-cyan-400 text-xl"></i><h3 class="font-semibold text-xl">Technologies</h3></div>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">HTML5 / CSS3</span><span class="text-zinc-500">Intermediate</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:60%" data-width="60"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">JavaScript</span><span class="text-zinc-500">Intermediate</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:50%" data-width="50"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">TypeScript</span><span class="text-zinc-500">Beginner</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:30%" data-width="30"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">Python</span><span class="text-zinc-500">Intermediate</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:45%" data-width="45"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="flex items-center gap-x-3 mb-6"><i class="fa-solid fa-layer-group text-cyan-400 text-xl"></i><h3 class="font-semibold text-xl">Frameworks &amp; Databases</h3></div>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">React</span><span class="text-zinc-500">Intermediate</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:45%" data-width="45"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">Django / REST Framework</span><span class="text-zinc-500">Beginner</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:35%" data-width="35"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">PostgreSQL</span><span class="text-zinc-500">Beginner</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:30%" data-width="30"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="font-medium">Tailwind CSS</span><span class="text-zinc-500">Intermediate</span></div>
+                        <div class="h-2 bg-zinc-800 rounded-full overflow-hidden"><div class="skill-bar h-2 bg-cyan-500 rounded-full" style="width:50%" data-width="50"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+            <div class="flex items-start gap-x-4">
+                <div class="mt-1"><i class="fa-solid fa-robot text-emerald-400 text-2xl"></i></div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-xl mb-3">AI &amp; Modern Development Practices</h3>
+                    <p class="text-zinc-300 leading-relaxed mb-4">I use AI assistants daily for code generation, debugging and architecture planning, which helps me ship features faster while keeping quality high.</p>
+                    <div class="flex flex-wrap gap-2"><span class="tech-tag">Prompt Engineering</span><span class="tech-tag">AI-Assisted Development</span><span class="tech-tag">Testing</span><span class="tech-tag">Rapid Prototyping</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="experience" class="max-w-7xl mx-auto px-6 pb-20 scroll-animate">
+        <h2 class="section-header mb-10">Experience &amp; Education</h2>
+        <div class="space-y-10 relative">
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-cyan-600 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-graduation-cap text-white text-sm"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">Diploma in Web Development</h3><p class="text-zinc-400">Northbridge Coding Academy • Online</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2025 – 2026</span>
+                    </div><p class="text-sm text-zinc-400 mt-1">Example qualification for demo purposes</p>
+                </div>
+            </div>
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-zinc-700 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-calendar-days text-white text-sm"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">Events Coordinator</h3><p class="text-zinc-400">Harbourside Events Co. • Manchester, UK</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2021 – Present</span>
+                    </div><ul class="space-y-1.5 text-sm text-zinc-300 mt-3"><li class="flex gap-2"><span class="text-blue-400 mt-1.5">•</span> Planned and ran 120+ corporate and private events a year with budgets up to £40k.</li><li class="flex gap-2"><span class="text-blue-400 mt-1.5">•</span> Built a simple booking spreadsheet-to-web workflow that cut admin time by 30%.</li><li class="flex gap-2"><span class="text-blue-400 mt-1.5">•</span> Led teams of up to 15 staff on event days.</li></ul>
+                </div>
+            </div>
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-zinc-700 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-utensils text-white text-sm"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">Restaurant Supervisor</h3><p class="text-zinc-400">The Copper Kettle • Leeds, UK</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2017 – 2021</span>
+                    </div><ul class="space-y-1.5 text-sm text-zinc-300 mt-3"><li class="flex gap-2"><span class="text-blue-400 mt-1.5">•</span> Supervised front-of-house for a 90-cover restaurant.</li><li class="flex gap-2"><span class="text-blue-400 mt-1.5">•</span> Trained new staff and introduced a digital rota system.</li></ul>
+                </div>
+            </div>
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-zinc-700 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-graduation-cap text-white text-sm"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">BA (Hons) Business Management</h3><p class="text-zinc-400">University of Example • UK</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2014 – 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="max-w-7xl mx-auto px-6 pb-20 scroll-animate">
+        <h2 class="section-header mb-8">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div onclick="showProjectModal(0)" class="project-card cursor-pointer bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-3xl p-7 group">
+                <div class="flex items-start justify-between mb-4">
+                    <div><h3 class="font-semibold text-2xl group-hover:text-cyan-400 transition-colors">Plate Planner</h3><p class="text-sm text-emerald-400 mt-1">Full-Stack Project • 2026</p></div>
+                    <i class="fa-solid fa-bowl-food text-3xl text-zinc-700 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <p class="text-zinc-300 line-clamp-3">Meal-planning web app with user accounts, saved recipes and an auto-generated shopping list.</p>
+                <div class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">React</span><span class="tech-tag">Django REST</span><span class="tech-tag">PostgreSQL</span></div>
+            </div>
+            <div onclick="showProjectModal(1)" class="project-card cursor-pointer bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-3xl p-7 group">
+                <div class="flex items-start justify-between mb-4">
+                    <div><h3 class="font-semibold text-2xl group-hover:text-cyan-400 transition-colors">Event Check-in</h3><p class="text-sm text-emerald-400 mt-1">Personal Project • 2025</p></div>
+                    <i class="fa-solid fa-qrcode text-3xl text-zinc-700 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <p class="text-zinc-300 line-clamp-3">Mobile-first PWA that checks guests in by scanning QR tickets, working offline at venues with poor signal.</p>
+                <div class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">JavaScript</span><span class="tech-tag">PWA</span><span class="tech-tag">IndexedDB</span></div>
+            </div>
+            <div onclick="showProjectModal(2)" class="project-card cursor-pointer bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-3xl p-7 group">
+                <div class="flex items-start justify-between mb-4">
+                    <div><h3 class="font-semibold text-2xl group-hover:text-cyan-400 transition-colors">Corner Café Website</h3><p class="text-sm text-emerald-400 mt-1">Practice Project • 2025</p></div>
+                    <i class="fa-solid fa-mug-hot text-3xl text-zinc-700 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <p class="text-zinc-300 line-clamp-3">Responsive single-page site for a fictional café with menu, opening hours and a contact form.</p>
+                <div class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></div>
+            </div>
+            <div onclick="showProjectModal(3)" class="project-card cursor-pointer bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-3xl p-7 group">
+                <div class="flex items-start justify-between mb-4">
+                    <div><h3 class="font-semibold text-2xl group-hover:text-cyan-400 transition-colors">Budget Buddy</h3><p class="text-sm text-emerald-400 mt-1">Python Project • 2025</p></div>
+                    <i class="fa-solid fa-wallet text-3xl text-zinc-700 group-hover:text-blue-500 transition-colors"></i>
+                </div>
+                <p class="text-zinc-300 line-clamp-3">Command-line budgeting tool that imports bank CSVs, categorises spending and prints monthly reports.</p>
+                <div class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">Python</span><span class="tech-tag">pandas</span><span class="tech-tag">CLI</span></div>
+            </div>
+        </div>
+    </section>
+    <footer class="border-t border-zinc-800 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+            <p class="text-zinc-400 text-sm">© Alex Morgan</p>
+            <div class="flex justify-center gap-x-6 mt-4"><a href="https://github.com/example" target="_blank" rel="noopener" class="text-zinc-500 hover:text-white text-sm">GitHub</a><a href="https://www.linkedin.com/in/example" target="_blank" rel="noopener" class="text-zinc-500 hover:text-white text-sm">LinkedIn</a><a href="mailto:alex.morgan@example.com" class="text-zinc-500 hover:text-white text-sm">Email</a></div>
+        </div>
+    </footer>
+    <section class="print-only print-qr" aria-hidden="true">
+        <img src="qr-code.png" alt="QR code linking to https://stocks84.github.io/draftedcv-digital-cv-demo/">
+        <p>Scan for the full interactive CV.</p>
+        <p style="font-size:8.5pt;">stocks84.github.io/draftedcv-digital-cv-demo</p>
+    </section>
+
+    <!-- Project Modals -->
+    <div id="projectModal" onclick="hideProjectModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full p-8">
+            <div class="flex justify-between items-start mb-6">
+                <div id="modalTitle" class="text-3xl font-semibold"></div>
+                <button onclick="hideProjectModal()" class="text-zinc-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+            
+            <div id="modalDescription" class="text-lg text-zinc-300 leading-relaxed mb-6"></div>
+            
+            <div class="mb-6">
+                <div class="text-xs uppercase tracking-widest text-zinc-500 mb-2 font-medium">Technologies Used</div>
+                <div id="modalTech" class="flex flex-wrap gap-2"></div>
+            </div>
+            
+            <div class="flex items-center gap-x-4">
+                <a id="modalLiveLink" href="#" target="_blank" 
+                   class="inline-flex items-center gap-x-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-500 transition-colors rounded-2xl font-semibold text-sm">
+                    <span>View Live Site</span>
+                    <i class="fa-solid fa-external-link-alt text-xs"></i>
+                </a>
+                <a id="modalGithubLink" href="#" target="_blank"
+                   class="inline-flex items-center gap-x-2 px-6 py-3 border border-zinc-700 hover:bg-zinc-800 rounded-2xl font-medium text-sm">
+                    <i class="fa-brands fa-github"></i>
+                    <span>View Code</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>window.CV_PROJECTS = [{"title": "Plate Planner", "description": "A Django and React app where users plan weekly meals, save recipes and get a combined shopping list. Includes authentication, REST API and responsive UI.", "tech": ["React", "Django REST", "PostgreSQL"], "live": "#", "github": "#"}, {"title": "Event Check-in", "description": "An offline-first progressive web app for small events: import a guest list, scan QR tickets and sync check-ins when back online.", "tech": ["JavaScript", "PWA", "IndexedDB"], "live": "#", "github": "#"}, {"title": "Corner Café Website", "description": "A clean, accessible single-page website built to practise semantic HTML, responsive layouts and form validation.", "tech": ["HTML5", "CSS3", "JavaScript"], "live": "#", "github": "#"}, {"title": "Budget Buddy", "description": "A Python CLI that reads bank CSV exports, categorises transactions with simple rules and outputs monthly summaries and charts.", "tech": ["Python", "pandas", "CLI"], "live": "#", "github": "#"}];</script>
+    <script src="js/main.js"></script>
+    <script>
+    (function () {
+        var w = document.getElementById('welcome'), b = document.getElementById('welcomeBtn');
+        if (!w) return;
+        document.documentElement.classList.add('welcome-open');
+        b.focus({ preventScroll: true });
+        function close() {
+            if (w.classList.contains('welcome-hide')) return;
+            w.classList.add('welcome-hide');
+            document.documentElement.classList.remove('welcome-open');
+            document.removeEventListener('keydown', onKey);
+            setTimeout(function () { w.hidden = true; }, 350);
+        }
+        function onKey(e) {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); close(); }
+            else if (e.key === 'Tab') { e.preventDefault(); b.focus(); }
+        }
+        w.addEventListener('click', close);
+        document.addEventListener('keydown', onKey);
+    })();
+    </script>
+    <a href="https://draftedcv.carrd.co" target="_blank" rel="noopener" class="dcv-mark no-print" title="This is an example Digital CV. All details are fictional.">Example CV by <b>DraftedCV</b></a>
+    <style>
+    .dcv-mark{position:fixed;right:12px;bottom:12px;z-index:40;font:500 11px/1 Inter,system-ui,sans-serif;color:#fff;text-decoration:none;padding:7px 11px;border-radius:999px;background:linear-gradient(90deg,#3B5DAD,#A464A1);opacity:.85;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+    .dcv-mark:hover{opacity:1}.dcv-mark b{font-weight:700}
+    .welcome-mark{color:#94a3b8;font-size:.72rem;margin:-.75rem 0 1.25rem}.welcome-mark b{background:linear-gradient(90deg,#7b9be6,#c98fc6);-webkit-background-clip:text;background-clip:text;color:transparent}
+    @media print{.dcv-print{display:block!important;text-align:center;font-size:8pt;color:#666;margin-top:6pt}}
+    </style>
+    <p class="dcv-print" style="display:none">Example CV by DraftedCV · all details are fictional</p>
+</body>
+</html>
