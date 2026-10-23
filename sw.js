@@ -1,5 +1,5 @@
 // Service worker: offline support for the CV. build.py fills in CACHE from cv-data.json (bump site.cache on each release).
-const CACHE = 'dcv-demo-v2';
+const CACHE = 'dcv-demo-v3';
 const CORE = [
   './', 'index.html', 'css/style.css', 'css/tailwind.css', 'css/fonts.css', 'js/main.js',
   'vendor/fa/css/fa.min.css', 'vendor/fa/webfonts/fa-solid-900.woff2', 'vendor/fa/webfonts/fa-brands-400.woff2',

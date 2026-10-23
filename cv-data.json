@@ -2,7 +2,7 @@
   "_note": "DraftedCV Digital CV template. ALL content is fictional example data. Edit this file, then run: python3 build.py",
   "site": {
     "url": "https://stocks84.github.io/draftedcv-digital-cv-demo/",
-    "cache": "dcv-demo-v2",
+    "cache": "dcv-demo-v3",
     "app_short_name": "Alex CV",
     "theme_color": "#0a1428",
     "accent": "#22d3ee",

@@ -188,7 +188,10 @@ html.welcome-open, html.welcome-open body { overflow: hidden; }
     .skill-chip { background: #fff !important; border: 1px solid #cbd5e1 !important; padding: 1pt 2pt 1pt 6pt !important; }
     .skill-level { background: #f1f5f9 !important; color: #334155 !important; font-size: 8.5pt !important; }
     .skill-chips { gap: 4pt !important; }
-    .timeline-item { break-inside: avoid; gap: 8pt !important; }
+    .timeline-item { break-inside: auto; page-break-inside: auto; gap: 8pt !important; }
+    .timeline-item h3, .timeline-item h3 + * { break-after: avoid; page-break-after: avoid; }
+    .timeline-item li, .timeline-item p { break-inside: avoid; page-break-inside: avoid; }
+    p, li { orphans: 3; widows: 3; }
     .timeline-item > div:first-child { width: 14pt !important; height: 14pt !important; border-radius: 4pt !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .timeline-item > div:first-child i { font-size: 7pt !important; }
     .timeline-item::before { left: 6.5pt; background: #cbd5e1 !important; }
