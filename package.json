@@ -1,11 +1,12 @@
 {
   "name": "draftedcv-digital-cv-demo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "DraftedCV Digital CV template",
   "scripts": {
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch",
+    "build": "python3 build.py"
   },
   "devDependencies": {
     "tailwindcss": "3.4.17"

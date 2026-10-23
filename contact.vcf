@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Morgan;Alex;;;
+FN:Alex Morgan
+TITLE:Junior Full Stack Developer
+EMAIL;TYPE=INTERNET:alex.morgan@example.com
+TEL;TYPE=CELL:+447700900123
+ADR;TYPE=WORK:;;;Manchester\, UK;;;
+URL:https://stocks84.github.io/draftedcv-digital-cv-demo/
+URL:https://github.com/example
+URL:https://www.linkedin.com/in/example
+NOTE:Fictional example contact – DraftedCV demo
+END:VCARD
