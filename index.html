@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan • Junior Full Stack Developer</title>
+    <meta name="description" content="Alex Morgan – Junior Full Stack Developer, Manchester, UK. Open to junior full stack &amp; frontend roles.">
+    <link rel="canonical" href="https://stocks84.github.io/draftedcv-digital-cv-demo/">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Alex Morgan • Junior Full Stack Developer">
+    <meta property="og:description" content="Alex Morgan – Junior Full Stack Developer, Manchester, UK. Open to junior full stack &amp; frontend roles.">
+    <meta property="og:url" content="https://stocks84.github.io/draftedcv-digital-cv-demo/">
+    <meta property="og:image" content="https://stocks84.github.io/draftedcv-digital-cv-demo/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Alex Morgan – Junior Full Stack Developer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alex Morgan • Junior Full Stack Developer">
+    <meta name="twitter:description" content="Alex Morgan – Junior Full Stack Developer, Manchester, UK. Open to junior full stack &amp; frontend roles.">
+    <meta name="twitter:image" content="https://stocks84.github.io/draftedcv-digital-cv-demo/og-image.png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#0a1428">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Alex CV">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Icons and fonts are self-hosted: no Google/CDN requests (GDPR) and they work offline -->
+    <link rel="stylesheet" href="vendor/fa/css/fa.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Compiled Tailwind CSS v3 (build.py rebuilds it); loaded last -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <style>:root{--accent:#22d3ee;--accent-light:#0b7a8b;--btn:#0b7e90;--btn-hover:#096574;}</style>
+    <script>
+    /* Skip the QR welcome screen after a QR scan (?from=qr) or when opened as the installed app */
+    (function () {
+        var d = document.documentElement;
+        try {
+            var u = new URL(location.href), qr = u.searchParams.get('from') === 'qr';
+            var app = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+            if (qr || app) d.classList.add('no-welcome');
+            if (qr && history.replaceState) { u.searchParams.delete('from'); history.replaceState(null, '', u.pathname + u.search + u.hash); }
+        } catch (e) {}
+        /* Theme: saved choice, else follow the device (light/dark) */
+        var t = null; try { t = localStorage.getItem('cvTheme'); } catch (e) {}
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'traditional' : 'mountain';
+        d.setAttribute('data-theme', t);
+    })();
+    </script>
+    <noscript><style>.welcome{display:none!important}.scroll-animate{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="bg-zinc-950 text-zinc-200 mountain">
+    <script>document.body.className = 'bg-zinc-950 text-zinc-200 ' + document.documentElement.getAttribute('data-theme');</script>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <!-- QR welcome screen: shown on open, skipped after a QR scan or in the installed app.
+         Click/tap outside the QR, the button, Enter or Escape opens the CV. "Show QR" in the nav reopens it. -->
+    <div id="welcome" class="welcome no-print" role="dialog" aria-modal="true" aria-labelledby="welcomeName" aria-describedby="welcomeHint">
+        <div class="welcome-card">
+            <p class="welcome-kicker">Junior Full Stack Developer</p>
+            <p id="welcomeName" class="welcome-name">Alex Morgan</p>
+            <div class="welcome-qr"><img src="qr-welcome.svg" width="260" height="260" alt="QR code linking to https://stocks84.github.io/draftedcv-digital-cv-demo/"></div>
+            <p id="welcomeHint" class="welcome-hint">Scan to open this CV on your phone</p>
+            <p class="welcome-mark">Example CV by <b>DraftedCV</b> · fictional details</p>
+            <button id="welcomeBtn" type="button" class="welcome-btn">View CV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div id="page">
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800 no-print" aria-label="Main">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between">
+            <a href="#top" class="flex items-center gap-x-3 brand-link">
+                <span class="logo-badge w-9 h-9 rounded-xl flex items-center justify-center" aria-hidden="true"><span class="text-white font-bold text-xl">AM</span></span>
+                <span class="font-semibold text-xl tracking-tight">Alex Morgan</span>
+            </a>
+            <div class="hidden md:flex items-center gap-x-7 text-sm">
+                <a href="#about" class="nav-link text-zinc-400 font-medium">About</a>
+                <a href="#skills" class="nav-link text-zinc-400 font-medium">Skills</a>
+                <a href="#experience" class="nav-link text-zinc-400 font-medium">Experience</a>
+                <a href="#projects" class="nav-link text-zinc-400 font-medium">Projects</a>
+                <div class="flex items-center gap-x-3 pl-5 border-l border-zinc-800">
+                    <button type="button" class="js-show-qr ghost-btn flex items-center gap-x-2 px-3 py-1.5 text-xs font-medium border border-zinc-700 rounded-2xl text-zinc-400">
+                        <i class="fa-solid fa-qrcode text-sm" aria-hidden="true"></i><span>Show QR</span>
+                    </button>
+                    <button type="button" class="js-theme ghost-btn flex items-center gap-x-2 px-3 py-1.5 text-xs font-medium border border-zinc-700 rounded-2xl text-zinc-400" aria-pressed="false">
+                        <i class="fa-solid fa-sun text-sm js-theme-icon" aria-hidden="true"></i><span class="js-theme-label">Light</span>
+                    </button>
+                    <a href="alex-morgan-cv.pdf" download class="light-btn flex items-center gap-x-2 px-4 py-2 font-semibold text-sm rounded-2xl">
+                        <i class="fa-solid fa-file-arrow-down text-sm" aria-hidden="true"></i><span>Download PDF</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex md:hidden items-center gap-x-2">
+                <button type="button" class="js-theme ghost-btn w-10 h-10 flex items-center justify-center text-zinc-400 rounded-xl" aria-label="Switch to light theme" aria-pressed="false">
+                    <i class="fa-solid fa-sun text-lg js-theme-icon" aria-hidden="true"></i>
+                </button>
+                <button type="button" id="menuBtn" class="ghost-btn w-10 h-10 flex items-center justify-center text-zinc-400 rounded-xl" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fa-solid fa-bars text-xl" id="hamburgerIcon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-lg">
+            <div class="px-5 py-4 flex flex-col gap-y-1 text-sm">
+                <a href="#about" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">About</a>
+                <a href="#skills" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">Skills</a>
+                <a href="#experience" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">Experience</a>
+                <a href="#projects" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">Projects</a>
+                <div class="pt-3 mt-2 border-t border-zinc-800 grid gap-2">
+                    <button type="button" class="js-show-qr ghost-btn w-full flex items-center justify-center gap-x-2 px-4 py-2.5 border border-zinc-700 rounded-2xl text-sm text-zinc-300">
+                        <i class="fa-solid fa-qrcode" aria-hidden="true"></i><span>Show QR code</span>
+                    </button>
+                    <a href="contact.vcf" download class="ghost-btn w-full flex items-center justify-center gap-x-2 px-4 py-2.5 border border-zinc-700 rounded-2xl text-sm text-zinc-300">
+                        <i class="fa-solid fa-address-card" aria-hidden="true"></i><span>Save contact</span>
+                    </a>
+                    <a href="alex-morgan-cv.pdf" download class="light-btn w-full flex items-center justify-center gap-x-2 px-4 py-3 font-semibold text-sm rounded-2xl">
+                        <i class="fa-solid fa-file-arrow-down text-sm" aria-hidden="true"></i><span>Download PDF</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main id="main" tabindex="-1">
+    <span id="top"></span>
+    <header class="max-w-7xl mx-auto px-5 sm:px-6 pt-12 sm:pt-16 pb-10 sm:pb-12">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-10">
+            <div class="hero-photo flex-shrink-0 mx-auto lg:mx-0">
+                <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-3xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
+                    <img src="headshot.png" alt="Photo of Alex Morgan" width="176" height="176" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="flex-1">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter heading-font mb-2">Alex Morgan</h1>
+                <p class="hero-title accent-text text-2xl sm:text-3xl font-semibold tracking-tight mb-4">Junior Full Stack Developer</p>
+                <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                    <a href="mailto:alex.morgan@example.com" class="contact-link flex items-center gap-x-2 text-zinc-400" data-print-url="alex.morgan@example.com"><i class="fa-solid fa-envelope w-4" aria-hidden="true"></i><span>alex.morgan@example.com</span></a>
+                    <a href="tel:+447700900123" class="contact-link flex items-center gap-x-2 text-zinc-400"><i class="fa-solid fa-phone w-4" aria-hidden="true"></i><span>+44 7700 900123</span></a>
+                    <span class="flex items-center gap-x-2 text-zinc-400"><i class="fa-solid fa-location-dot w-4" aria-hidden="true"></i><span>Manchester, UK</span></span>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 mt-6">
+                    <a href="https://github.com/example" target="_blank" rel="noopener noreferrer" class="hero-btn print-url flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium" data-print-url="github.com/example">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i><span>GitHub</span></a>
+                    <a href="https://www.linkedin.com/in/example" target="_blank" rel="noopener noreferrer" class="hero-btn print-url flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium" data-print-url="www.linkedin.com/in/example">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span></a>
+                    <a href="contact.vcf" download="alex-morgan.vcf" class="hero-btn no-print flex items-center gap-x-2 px-5 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium"><i class="fa-solid fa-address-card" aria-hidden="true"></i><span>Save contact</span></a>
+                    <a href="alex-morgan-cv.pdf" download class="accent-btn no-print flex items-center gap-x-2 px-5 py-2.5 rounded-2xl text-sm font-semibold"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i><span>Download PDF</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="about" aria-labelledby="h-about" class="max-w-7xl mx-auto px-6 pb-16 scroll-animate">
+        <div class="max-w-3xl">
+            <h2 id="h-about" class="section-header mb-6">About Me</h2>
+            <div class="text-lg text-zinc-300 leading-relaxed"><p class="mb-6">Junior Full Stack Developer with a Diploma in Web Development from the (fictional) Northbridge Coding Academy.</p><p class="mb-6">I bring eight years in hospitality and event management, so I&#x27;m used to fast-moving teams, demanding customers and staying calm when things go sideways. Now I put that same care into building clean, accessible web apps.</p><p class="mb-6">I work with HTML, CSS, JavaScript, TypeScript, Python, React and Django, plus SQL and NoSQL databases. I use AI tools every day for debugging, code review and prototyping, and I test and own everything I ship.</p></div>
+            <div class="mt-6 inline-flex items-center gap-x-2 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm">
+                <span class="pulse-dot w-2 h-2 rounded-full" aria-hidden="true"></span>
+                <span class="ok-text font-medium">Open to junior full stack &amp; frontend roles</span>
+            </div>
+        </div>
+    </section>
+    <section id="skills" aria-labelledby="h-skills" class="max-w-7xl mx-auto px-6 pb-20 scroll-animate">
+        <h2 id="h-skills" class="section-header mb-8">Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="flex items-center gap-x-3 mb-6"><i class="fa-solid fa-laptop-code accent-text text-xl" aria-hidden="true"></i><h3 class="font-semibold text-xl">Technologies</h3></div>
+                <ul class="skill-chips" aria-label="Technologies">
+                    <li class="skill-chip lvl-2"><span class="skill-name">HTML5 / CSS3</span><span class="skill-level">Intermediate</span></li>
+                    <li class="skill-chip lvl-2"><span class="skill-name">JavaScript</span><span class="skill-level">Intermediate</span></li>
+                    <li class="skill-chip lvl-1"><span class="skill-name">TypeScript</span><span class="skill-level">Beginner</span></li>
+                    <li class="skill-chip lvl-2"><span class="skill-name">Python</span><span class="skill-level">Intermediate</span></li>
+                </ul>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+                <div class="flex items-center gap-x-3 mb-6"><i class="fa-solid fa-layer-group accent-text text-xl" aria-hidden="true"></i><h3 class="font-semibold text-xl">Frameworks &amp; Databases</h3></div>
+                <ul class="skill-chips" aria-label="Frameworks &amp; Databases">
+                    <li class="skill-chip lvl-2"><span class="skill-name">React</span><span class="skill-level">Intermediate</span></li>
+                    <li class="skill-chip lvl-1"><span class="skill-name">Django / REST Framework</span><span class="skill-level">Beginner</span></li>
+                    <li class="skill-chip lvl-1"><span class="skill-name">PostgreSQL</span><span class="skill-level">Beginner</span></li>
+                    <li class="skill-chip lvl-2"><span class="skill-name">Tailwind CSS</span><span class="skill-level">Intermediate</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+            <div class="flex items-start gap-x-4">
+                <div class="mt-1"><i class="fa-solid fa-robot ok-text text-2xl" aria-hidden="true"></i></div>
+                <div class="flex-1">
+                    <h3 class="font-semibold text-xl mb-3">AI &amp; Modern Development Practices</h3>
+                    <p class="text-zinc-300 leading-relaxed mb-4">I use AI assistants daily for code generation, debugging and architecture planning, which helps me ship features faster while keeping quality high.</p>
+                    <div class="flex flex-wrap gap-2"><span class="tech-tag">Prompt Engineering</span><span class="tech-tag">AI-Assisted Development</span><span class="tech-tag">Testing</span><span class="tech-tag">Rapid Prototyping</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="experience" aria-labelledby="h-exp" class="max-w-7xl mx-auto px-6 pb-20 scroll-animate">
+        <h2 id="h-exp" class="section-header mb-10">Experience &amp; Education</h2>
+        <div class="space-y-10 relative">
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 dot-current rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-graduation-cap text-white text-sm" aria-hidden="true"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">Diploma in Web Development</h3><p class="text-zinc-400">Northbridge Coding Academy • Online</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2025 – 2026</span>
+                    </div><p class="text-sm text-zinc-400 mt-1">Example qualification for demo purposes</p>
+                </div>
+            </div>
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-zinc-700 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-calendar-days text-white text-sm" aria-hidden="true"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">Events Coordinator</h3><p class="text-zinc-400">Harbourside Events Co. • Manchester, UK</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2021 – Present</span>
+                    </div><ul class="space-y-1.5 text-sm text-zinc-300 mt-3"><li class="flex gap-2"><span class="accent-text mt-1.5" aria-hidden="true">•</span> Planned and ran 120+ corporate and private events a year with budgets up to £40k.</li><li class="flex gap-2"><span class="accent-text mt-1.5" aria-hidden="true">•</span> Built a simple booking spreadsheet-to-web workflow that cut admin time by 30%.</li><li class="flex gap-2"><span class="accent-text mt-1.5" aria-hidden="true">•</span> Led teams of up to 15 staff on event days.</li></ul>
+                </div>
+            </div>
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-zinc-700 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-utensils text-white text-sm" aria-hidden="true"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">Restaurant Supervisor</h3><p class="text-zinc-400">The Copper Kettle • Leeds, UK</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2017 – 2021</span>
+                    </div><ul class="space-y-1.5 text-sm text-zinc-300 mt-3"><li class="flex gap-2"><span class="accent-text mt-1.5" aria-hidden="true">•</span> Supervised front-of-house for a 90-cover restaurant.</li><li class="flex gap-2"><span class="accent-text mt-1.5" aria-hidden="true">•</span> Trained new staff and introduced a digital rota system.</li></ul>
+                </div>
+            </div>
+            <div class="timeline-item flex gap-6">
+                <div class="flex-shrink-0 w-8 h-8 bg-zinc-700 rounded-2xl flex items-center justify-center mt-1 z-10"><i class="fa-solid fa-graduation-cap text-white text-sm" aria-hidden="true"></i></div>
+                <div class="flex-1 pb-2">
+                    <div class="flex items-center justify-between flex-wrap gap-x-4">
+                        <div><h3 class="font-semibold text-xl">BA (Hons) Business Management</h3><p class="text-zinc-400">University of Example • UK</p></div>
+                        <span class="text-sm text-zinc-500 font-medium whitespace-nowrap">2014 – 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" aria-labelledby="h-proj" class="max-w-7xl mx-auto px-6 pb-20 scroll-animate">
+        <h2 id="h-proj" class="section-header mb-8">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <button type="button" data-project="0" aria-haspopup="dialog" class="project-card text-left w-full cursor-pointer bg-zinc-900 border border-zinc-800 rounded-3xl p-7 group">
+                <span class="flex items-start justify-between mb-4">
+                    <span><span class="block font-semibold text-2xl card-title">Plate Planner</span><span class="block text-sm ok-text mt-1">Full-Stack Project • 2026</span></span>
+                    <i class="fa-solid fa-bowl-food text-3xl card-icon" aria-hidden="true"></i>
+                </span>
+                <span class="block text-zinc-300 line-clamp-3">Meal-planning web app with user accounts, saved recipes and an auto-generated shopping list.</span>
+                <span class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">React</span><span class="tech-tag">Django REST</span><span class="tech-tag">PostgreSQL</span></span>
+                <span class="sr-only">, open project details</span>
+            </button>
+            <button type="button" data-project="1" aria-haspopup="dialog" class="project-card text-left w-full cursor-pointer bg-zinc-900 border border-zinc-800 rounded-3xl p-7 group">
+                <span class="flex items-start justify-between mb-4">
+                    <span><span class="block font-semibold text-2xl card-title">Event Check-in</span><span class="block text-sm ok-text mt-1">Personal Project • 2025</span></span>
+                    <i class="fa-solid fa-qrcode text-3xl card-icon" aria-hidden="true"></i>
+                </span>
+                <span class="block text-zinc-300 line-clamp-3">Mobile-first PWA that checks guests in by scanning QR tickets, working offline at venues with poor signal.</span>
+                <span class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">JavaScript</span><span class="tech-tag">PWA</span><span class="tech-tag">IndexedDB</span></span>
+                <span class="sr-only">, open project details</span>
+            </button>
+            <button type="button" data-project="2" aria-haspopup="dialog" class="project-card text-left w-full cursor-pointer bg-zinc-900 border border-zinc-800 rounded-3xl p-7 group">
+                <span class="flex items-start justify-between mb-4">
+                    <span><span class="block font-semibold text-2xl card-title">Corner Café Website</span><span class="block text-sm ok-text mt-1">Practice Project • 2025</span></span>
+                    <i class="fa-solid fa-mug-hot text-3xl card-icon" aria-hidden="true"></i>
+                </span>
+                <span class="block text-zinc-300 line-clamp-3">Responsive single-page site for a fictional café with menu, opening hours and a contact form.</span>
+                <span class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></span>
+                <span class="sr-only">, open project details</span>
+            </button>
+            <button type="button" data-project="3" aria-haspopup="dialog" class="project-card text-left w-full cursor-pointer bg-zinc-900 border border-zinc-800 rounded-3xl p-7 group">
+                <span class="flex items-start justify-between mb-4">
+                    <span><span class="block font-semibold text-2xl card-title">Budget Buddy</span><span class="block text-sm ok-text mt-1">Python Project • 2025</span></span>
+                    <i class="fa-solid fa-wallet text-3xl card-icon" aria-hidden="true"></i>
+                </span>
+                <span class="block text-zinc-300 line-clamp-3">Command-line budgeting tool that imports bank CSVs, categorises spending and prints monthly reports.</span>
+                <span class="flex flex-wrap gap-2 mt-5"><span class="tech-tag">Python</span><span class="tech-tag">pandas</span><span class="tech-tag">CLI</span></span>
+                <span class="sr-only">, open project details</span>
+            </button>
+        </div>
+    </section>
+    <footer class="site-footer border-t border-zinc-800 bg-zinc-950 no-print">
+        <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+            <p class="text-zinc-400 text-sm">© Alex Morgan</p>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4"><a href="https://github.com/example" target="_blank" rel="noopener noreferrer" class="foot-link text-zinc-400 text-sm">GitHub</a><a href="https://www.linkedin.com/in/example" target="_blank" rel="noopener noreferrer" class="foot-link text-zinc-400 text-sm">LinkedIn</a><a href="mailto:alex.morgan@example.com" class="foot-link text-zinc-400 text-sm">Email</a><a href="contact.vcf" download class="foot-link text-zinc-400 text-sm">Save contact</a></div>
+        </div>
+    </footer>
+    <section class="print-only print-qr" aria-hidden="true">
+        <img src="qr-code.png" alt="">
+        <p>Scan for the full interactive CV.</p>
+        <p class="print-qr-url">stocks84.github.io/draftedcv-digital-cv-demo</p>
+    </section>
+
+    </main>
+    </div>
+
+    <div id="projectModal" class="modal-backdrop hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] items-center justify-center p-6">
+        <div class="modal bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full p-8" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+            <div class="flex justify-between items-start mb-6 gap-4">
+                <h2 id="modalTitle" class="text-3xl font-semibold"></h2>
+                <button type="button" id="modalClose" class="ghost-btn w-10 h-10 flex-shrink-0 flex items-center justify-center text-zinc-400 text-2xl leading-none rounded-xl" aria-label="Close project details">×</button>
+            </div>
+            <p id="modalDescription" class="text-lg text-zinc-300 leading-relaxed mb-6"></p>
+            <div class="mb-6">
+                <h3 class="text-xs uppercase tracking-widest text-zinc-400 mb-2 font-medium">Technologies used</h3>
+                <div id="modalTech" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+                <a id="modalLiveLink" href="#" target="_blank" rel="noopener noreferrer" class="accent-btn inline-flex items-center gap-x-2 px-6 py-3 rounded-2xl font-semibold text-sm">
+                    <span>View live site</span><i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+                </a>
+                <a id="modalGithubLink" href="#" target="_blank" rel="noopener noreferrer" class="ghost-btn inline-flex items-center gap-x-2 px-6 py-3 border border-zinc-700 rounded-2xl font-medium text-sm">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i><span>View code</span>
+                </a>
+                <p id="modalNoLinks" class="text-sm text-zinc-400">Demo project – links available on request.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>window.CV_PROJECTS = [{"title": "Plate Planner", "description": "A Django and React app where users plan weekly meals, save recipes and get a combined shopping list. Includes authentication, REST API and responsive UI.", "tech": ["React", "Django REST", "PostgreSQL"], "live": "#", "github": "#"}, {"title": "Event Check-in", "description": "An offline-first progressive web app for small events: import a guest list, scan QR tickets and sync check-ins when back online.", "tech": ["JavaScript", "PWA", "IndexedDB"], "live": "#", "github": "#"}, {"title": "Corner Café Website", "description": "A clean, accessible single-page website built to practise semantic HTML, responsive layouts and form validation.", "tech": ["HTML5", "CSS3", "JavaScript"], "live": "#", "github": "#"}, {"title": "Budget Buddy", "description": "A Python CLI that reads bank CSV exports, categorises transactions with simple rules and outputs monthly summaries and charts.", "tech": ["Python", "pandas", "CLI"], "live": "#", "github": "#"}];</script>
+    <script src="js/main.js"></script>
+    <a href="https://draftedcv.carrd.co" target="_blank" rel="noopener" class="dcv-mark no-print" title="This is an example Digital CV. All details are fictional.">Example CV by <b>DraftedCV</b></a>
+    <p class="dcv-print">Example CV by DraftedCV · all details are fictional</p>
+</body>
+</html>

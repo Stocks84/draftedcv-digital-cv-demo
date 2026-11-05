@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{NAME}} • {{TITLE}}</title>
+    {{META}}
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="{{THEME_COLOR}}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="{{SHORT}}">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Icons and fonts are self-hosted: no Google/CDN requests (GDPR) and they work offline -->
+    <link rel="stylesheet" href="vendor/fa/css/fa.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Compiled Tailwind CSS v3 (build.py rebuilds it); loaded last -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <style>{{THEME_VARS}}</style>
+    <script>
+    /* Skip the QR welcome screen after a QR scan (?from=qr) or when opened as the installed app */
+    (function () {
+        var d = document.documentElement;
+        try {
+            var u = new URL(location.href), qr = u.searchParams.get('from') === 'qr';
+            var app = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+            if (qr || app) d.classList.add('no-welcome');
+            if (qr && history.replaceState) { u.searchParams.delete('from'); history.replaceState(null, '', u.pathname + u.search + u.hash); }
+        } catch (e) {}
+        /* Theme: saved choice, else follow the device (light/dark) */
+        var t = null; try { t = localStorage.getItem('cvTheme'); } catch (e) {}
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'traditional' : 'mountain';
+        d.setAttribute('data-theme', t);
+    })();
+    </script>
+    <noscript><style>.welcome{display:none!important}.scroll-animate{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="bg-zinc-950 text-zinc-200 mountain">
+    <script>document.body.className = 'bg-zinc-950 text-zinc-200 ' + document.documentElement.getAttribute('data-theme');</script>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <!-- QR welcome screen: shown on open, skipped after a QR scan or in the installed app.
+         Click/tap outside the QR, the button, Enter or Escape opens the CV. "Show QR" in the nav reopens it. -->
+    <div id="welcome" class="welcome no-print" role="dialog" aria-modal="true" aria-labelledby="welcomeName" aria-describedby="welcomeHint">
+        <div class="welcome-card">
+            <p class="welcome-kicker">{{TITLE}}</p>
+            <p id="welcomeName" class="welcome-name">{{NAME}}</p>
+            <div class="welcome-qr"><img src="qr-welcome.svg" width="260" height="260" alt="QR code linking to {{URL}}"></div>
+            <p id="welcomeHint" class="welcome-hint">Scan to open this CV on your phone</p>
+            {{WELCOME_MARK}}
+            <button id="welcomeBtn" type="button" class="welcome-btn">View CV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div id="page">
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800 no-print" aria-label="Main">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between">
+            <a href="#top" class="flex items-center gap-x-3 brand-link">
+                <span class="logo-badge w-9 h-9 rounded-xl flex items-center justify-center" aria-hidden="true"><span class="text-white font-bold text-xl">{{INITIALS}}</span></span>
+                <span class="font-semibold text-xl tracking-tight">{{NAME}}</span>
+            </a>
+            <div class="hidden md:flex items-center gap-x-7 text-sm">
+                <a href="#about" class="nav-link text-zinc-400 font-medium">About</a>
+                <a href="#skills" class="nav-link text-zinc-400 font-medium">Skills</a>
+                <a href="#experience" class="nav-link text-zinc-400 font-medium">Experience</a>
+                <a href="#projects" class="nav-link text-zinc-400 font-medium">Projects</a>
+                <div class="flex items-center gap-x-3 pl-5 border-l border-zinc-800">
+                    <button type="button" class="js-show-qr ghost-btn flex items-center gap-x-2 px-3 py-1.5 text-xs font-medium border border-zinc-700 rounded-2xl text-zinc-400">
+                        <i class="fa-solid fa-qrcode text-sm" aria-hidden="true"></i><span>Show QR</span>
+                    </button>
+                    <button type="button" class="js-theme ghost-btn flex items-center gap-x-2 px-3 py-1.5 text-xs font-medium border border-zinc-700 rounded-2xl text-zinc-400" aria-pressed="false">
+                        <i class="fa-solid fa-sun text-sm js-theme-icon" aria-hidden="true"></i><span class="js-theme-label">Light</span>
+                    </button>
+                    <a href="{{PDF}}" download class="light-btn flex items-center gap-x-2 px-4 py-2 font-semibold text-sm rounded-2xl">
+                        <i class="fa-solid fa-file-arrow-down text-sm" aria-hidden="true"></i><span>Download PDF</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex md:hidden items-center gap-x-2">
+                <button type="button" class="js-theme ghost-btn w-10 h-10 flex items-center justify-center text-zinc-400 rounded-xl" aria-label="Switch to light theme" aria-pressed="false">
+                    <i class="fa-solid fa-sun text-lg js-theme-icon" aria-hidden="true"></i>
+                </button>
+                <button type="button" id="menuBtn" class="ghost-btn w-10 h-10 flex items-center justify-center text-zinc-400 rounded-xl" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fa-solid fa-bars text-xl" id="hamburgerIcon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-lg">
+            <div class="px-5 py-4 flex flex-col gap-y-1 text-sm">
+                <a href="#about" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">About</a>
+                <a href="#skills" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">Skills</a>
+                <a href="#experience" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">Experience</a>
+                <a href="#projects" class="menu-link py-2.5 px-3 text-zinc-300 rounded-xl">Projects</a>
+                <div class="pt-3 mt-2 border-t border-zinc-800 grid gap-2">
+                    <button type="button" class="js-show-qr ghost-btn w-full flex items-center justify-center gap-x-2 px-4 py-2.5 border border-zinc-700 rounded-2xl text-sm text-zinc-300">
+                        <i class="fa-solid fa-qrcode" aria-hidden="true"></i><span>Show QR code</span>
+                    </button>
+                    <a href="contact.vcf" download class="ghost-btn w-full flex items-center justify-center gap-x-2 px-4 py-2.5 border border-zinc-700 rounded-2xl text-sm text-zinc-300">
+                        <i class="fa-solid fa-address-card" aria-hidden="true"></i><span>Save contact</span>
+                    </a>
+                    <a href="{{PDF}}" download class="light-btn w-full flex items-center justify-center gap-x-2 px-4 py-3 font-semibold text-sm rounded-2xl">
+                        <i class="fa-solid fa-file-arrow-down text-sm" aria-hidden="true"></i><span>Download PDF</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main id="main" tabindex="-1">
+    <span id="top"></span>
+{{BODY}}
+    </main>
+    </div>
+
+    <div id="projectModal" class="modal-backdrop hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] items-center justify-center p-6">
+        <div class="modal bg-zinc-900 border border-zinc-700 rounded-3xl max-w-2xl w-full p-8" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+            <div class="flex justify-between items-start mb-6 gap-4">
+                <h2 id="modalTitle" class="text-3xl font-semibold"></h2>
+                <button type="button" id="modalClose" class="ghost-btn w-10 h-10 flex-shrink-0 flex items-center justify-center text-zinc-400 text-2xl leading-none rounded-xl" aria-label="Close project details">×</button>
+            </div>
+            <p id="modalDescription" class="text-lg text-zinc-300 leading-relaxed mb-6"></p>
+            <div class="mb-6">
+                <h3 class="text-xs uppercase tracking-widest text-zinc-400 mb-2 font-medium">Technologies used</h3>
+                <div id="modalTech" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+                <a id="modalLiveLink" href="#" target="_blank" rel="noopener noreferrer" class="accent-btn inline-flex items-center gap-x-2 px-6 py-3 rounded-2xl font-semibold text-sm">
+                    <span>View live site</span><i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+                </a>
+                <a id="modalGithubLink" href="#" target="_blank" rel="noopener noreferrer" class="ghost-btn inline-flex items-center gap-x-2 px-6 py-3 border border-zinc-700 rounded-2xl font-medium text-sm">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i><span>View code</span>
+                </a>
+                <p id="modalNoLinks" class="text-sm text-zinc-400">Demo project – links available on request.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>window.CV_PROJECTS = {{PROJECTS_JSON}};</script>
+    <script src="js/main.js"></script>
+{{MARKER}}
+</body>
+</html>
