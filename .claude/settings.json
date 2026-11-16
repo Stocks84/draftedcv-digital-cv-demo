@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Running syntax checks",
+            "command": "cd \"${CLAUDE_PROJECT_DIR:-.}\" && python3 -m py_compile build.py && node --check js/main.js sw.js sw.template.js || { echo \"py_compile / node --check failed. Fix the failures before stopping.\" >&2; exit 2; }"
+          }
+        ]
+      }
+    ]
+  }
+}
