@@ -18,7 +18,7 @@ Static HTML/CSS/JS PWA. Python `build.py` generates the page, CSS, QR, icons, ma
 ## Conventions
 - Demo data is fictional only. After edits, bump `site.cache` (e.g. `-v2`) and rebuild so installed apps update.
 - Do not run a full `build.py` from a Stop hook (it writes files and may need a browser).
-- Never commit secrets or `willsto84@gmail.com`. Git author must be `Stocks84 <124254214+Stocks84@users.noreply.github.com>`. Do not push to `main` or merge without Will's approval.
+- Never commit secrets or Will's personal Gmail; use `124254214+Stocks84@users.noreply.github.com` instead. Git author must be `Stocks84 <124254214+Stocks84@users.noreply.github.com>`. Do not push to `main` or merge without Will's approval.
 
 ## End-of-job report
 Every finished coding job must be reported in this shape. Only list a check under CHECKS RUN if it actually ran; anything untested goes under NOT CHECKED, never left out.
